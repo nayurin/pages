@@ -1,7 +1,9 @@
 import { en } from './en'
 import { zh } from './zh'
 
-export default {
+const i18nText = {
   en,
   zh
-}
+};
+
+export default i18nText;
