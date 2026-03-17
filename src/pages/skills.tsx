@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Box, List, ListItem, ListItemButton, ListItemText,  Typography, Grid, Paper, useMediaQuery } from '@mui/material';
+import { Box, List, ListItemButton, ListItemText,  Typography, Grid, Paper, useMediaQuery } from '@mui/material';
 import { styled, ThemeProvider, createTheme } from '@mui/material/styles';
 import CircularProgress, { CircularProgressProps } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses, LinearProgressProps } from '@mui/material/LinearProgress';
@@ -65,14 +65,15 @@ function CircularProgressWithLabel(
   );
 };
 
-function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
-  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 16,
   borderRadius: 8,
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
   },
 }));
+
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   const rating = Math.round((props.value - 25) / 15)
   const color = ['inherit', 'success', 'info', 'warning', 'secondary', 'error'][rating] ?? 'inherit'
 
@@ -245,23 +246,23 @@ function SkillList({
   );
 }
 
+const PaperItem = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: (theme.vars ?? theme).palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
+
 export default function Skills() {
   const { t } = useTranslation();
   const [ skillItemIndex, setSkillItemIndex ] = useState({ category: 0, skill: 0 });
   const skills = i18nText['zh'].translation.skills;
   const skill = skills[skillItemIndex.category].items[skillItemIndex.skill];
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: (theme.vars ?? theme).palette.text.secondary,
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#1A2027',
-    }),
-  }));
 
   return (
     <Layout>
@@ -280,7 +281,7 @@ export default function Skills() {
             ))}
           </Grid>
           <Grid size={8}>
-            <Item
+            <PaperItem
               elevation={0}
               sx={{ height: isMobile ? '10%' : '40%', boxSizing: 'border-box', alignContent: 'center' }}
             >
@@ -290,8 +291,8 @@ export default function Skills() {
               <TypographyWithTooltips variant='body2'>
                 {t(`skills.${skillItemIndex.category}.items.${skillItemIndex.skill}.name`)}
               </TypographyWithTooltips>
-            </Item>
-            <Item
+            </PaperItem>
+            <PaperItem
               elevation={0}
               sx={{ height: isMobile ? '90%' : '60%', boxSizing: 'border-box', alignContent: 'center', textAlign: 'left' }}
             >
@@ -310,7 +311,7 @@ export default function Skills() {
                       </TypographyWithTooltips>
                   </p>
               ))}
-            </Item>
+            </PaperItem>
           </Grid>
         </Grid>
       </SectionCard>
