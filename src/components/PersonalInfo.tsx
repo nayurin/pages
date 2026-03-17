@@ -16,7 +16,7 @@ export default function PersonalInfo() {
         }}>
           <Avatar 
             alt={t("personal.name")} 
-            src="/profile.png"
+            src="profile.png"
             variant={'circular'}
             sx={{ width: 100, height: 100 }} 
           />

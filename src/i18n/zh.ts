@@ -19,7 +19,7 @@ export const zh = {
     education: [
       {
         id: 1,
-        avatar: '/avatar_ustb.png',
+        avatar: 'avatar_ustb.png',
         school: '北京科技大学',
         degree: '信息安全 - 学士',
         period: '2006 - 2010',

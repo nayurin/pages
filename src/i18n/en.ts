@@ -19,7 +19,7 @@ export const en = {
     education: [
       {
         id: 1,
-        avatar: '/avatar_ustb.png',
+        avatar: 'avatar_ustb.png',
         school: 'University of Science and Technology, Beijing',
         degree: 'Information Security - Bachelor',
         period: '2006 - 2010',
